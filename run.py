@@ -1,82 +1,92 @@
-import gspread
-from google.oauth2.service_account import Credentials
 
-SCOPE = [
-    "https://www.googleapis.com/auth/spreadsheets",
-    "https://www.googleapis.com/auth/drive.file",
-    "https://www.googleapis.com/auth/drive"
-    ]
+# start of program
+#-------------------------------------------------------------------->
+# request appointment and client information from the user;
 
-CREDS = Credentials.from_service_account_file('creds.json')
-SCOPED_CREDS = CREDS.with_scopes(SCOPE)
-GSPREAD_CLIENT = gspread.authorize(SCOPED_CREDS)
-SHEET = GSPREAD_CLIENT.open('Blanca_hair_studios')
+intro = "Welcome to Blanca's Hair Salon booking system\n"
+print(intro.center(50))
 
-#start of programe
+dash = "-" * 35
+print(dash.center(50))
 
-print("Book new appointment.\n")
+print("To book a new appointment, please provide the below information.\n")
 
-fnme = input("Please provide client's first name:\n")
+print("Please add in client's first name")
+fname = input("First Name:\n")
 
-lname = input("Please provide client's last name:\n")
+print("Please add in client's last name")
+lname = input("Last Name:\n")
 
-# function - check if client is already on database; 
+print("Please add in client's email address")
+email = input("Email:\n")
 
-# if client already exists;
+print("Please add in client's contact number")
+contact_no = input("Contact Number:\n")
 
-print("Client exists in database. Please contintue to adding appointment details:\n")
+print("Please provide client's available date, type date in dd/yy/mm format")
+user_date = input("Date:\n")
 
-print("Please provide appointment date. Please type date in following format dd/mm/yy")
-date = input("Date:\n")
+print("Please provide client's available time, tye time in digital 24hr format, for example 14:00")
+user_time = str(input("Time:\n"))
 
-# date will be added to appointment sheet 
+print("Please provide the required service seperated by commas, for example; highlights, cut and blow dry\n")
+services = input("Service(s):\n")
 
-print("Please provide appointment time. Please use 24hr clock, for example, 14:00 for 2pm")
-time = input("Date:\n")
+print("Thank you. Getting information....\n")
 
-# time will be added to appointment sheet 
+print("Checking appoinment availability....\n")
 
-print("Please provide client's observations using the key indexes provided in the observation sheet. If the client is having more than one type, please seperate them by commas, for example; hh,tnt,cab\n")
-time = input("Observations:\n")
+print("Appointment available!")
+print("Calculating price and generating unqiue booking numnber...")
 
-# observations will be added to appointment sheets 
-# cost of appointment will also be calculated 
+#-------------------------------------------------------------------->
+# dictionaries
 
-print("New appointment made!\n")
-print("Appointment for {client} is booked in the {date} at {time} and will cost {price} in total")
+# salon_dates shows the avaible dates and times of the salon
+salon_dates = {
+  "Monday" : {
+    "Morning" : ["10:00", "11:00", "12:00"],
+    "Afternoon" : ["13:00", "14:00", "15:00", "16:00", "17:00"],
+  },
+  "Tuesday" : {
+    "Morning" : ["10:00", "11:00", "12:00"],
+    "Afternoon" : ["13:00", "14:00", "15:00", "16:00", "17:00"],
+  },
+  "Wednesday" : {
+    "Morning" : ["10:00", "11:00", "12:00"],
+    "Afternoon" : ["13:00", "14:00", "15:00", "16:00", "17:00"],
+  },
+  "Thursday" : {
+    "Morning" : ["10:00", "11:00", "12:00"],
+    "Afternoon" : ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00"],
+  },
+  "Friday" : {
+    "Morning" : ["10:00", "11:00", "12:00"],
+    "Afternoon" : ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
+  }
+}
 
+# services shows the services provided by the salon with the price for each service
+services = {
+  "Cut and Blow Dry" : 50,
+  "Half head Highlights" : 50,
+  "Highlights" : 100,
+  "Tint" : 20,
+  "Hair cut" : 40,
+  "Colour" : 60,
+  "Treatment conditioner" : 20 
+}
 
-# if the client does not exist in the database:
+# client shows/stores client information
+clients = {
+    "first name" : [],
+    "last name" : [],
+    "email" : [],
+    "servies required" : []
+}
 
-print("New client./n")
-print("Please add new client details below")
-age = input("age:\n")
-contact_no = input("contact number:\n")
-email = input("email:\n")
+#-------------------------------------------------------------------->
+# functions
 
-#will add this above including first name and last name to worksheet 
-
-print("new client added!\n")
-print("Continue to adding new apppintment")
-
-# repeat lines 29-46
-
-
-# get thes values from client_info sheet;
-# client_info = SHEET.worksheet('client_info')
-# data = client_info.get_all_values()
-# print(data)
-
-#get the valuse from column 1 and 2 in client_info sheet;
-# values_list = SHEET.worksheet('client_info').col_values(1)
-# print(values_list)
-
-# cell = SHEET.worksheet('client_info').find("helen@email.com")
-# print(f"found value {cell}")
-
-# def check_if_client_exists():
-#     """
-#     checks if a client already exists in database. If so, then user wil
-# continue to make appoinment. If not, user will have to add new client information 
-#     """
-
+def unique_booking_ref():
+    pass
