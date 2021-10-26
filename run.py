@@ -1,28 +1,16 @@
-import random
 
 """ salon_dates shows the availability for the salon. These will be used to check against the user's input days and time, to see if the dates requested are avaiable."""
 
 salon_dates = {
-  "Monday": {
-    "am": ["10:00", "11:00", "12:00"],
-    "pm": ["13:00", "14:00", "15:00"],
-  },
-  "Tuesday": {
-    "am": ["10:00", "11:00", "12:00"],
-    "pm": ["13:00", "14:00", "15:00"],
-  },
-  "Wednesday": {
-    "am": ["10:00", "11:00", "12:00"],
-    "pm": ["13:00", "14:00", "15:00"],
-  },
-  "Thursday": {
-    "am": ["10:00", "11:00", "12:00"],
-    "pm": ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20;00", "21:00"],
-  },
-  "Friday": {
-    "am": ["10:00", "11:00", "12:00"],
-    "pm": ["13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
-  }
+  "monday":["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+
+  "tuesday":["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+
+  "wednesday":["10:00", "11:00", "12:00", "13:00", "14:00", "15:00"],
+  
+  "thursday": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20;00", "21:00"],
+  
+  "friday": ["10:00", "11:00", "12:00", "13:00", "14:00", "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00"]
 }
 
 """ services shows the services provided by the salon with the price for each service. This will be used to calculate how much the client's appointment will be.
@@ -41,6 +29,7 @@ services = {
 
 """ client_info takes in the client informaiton provided by the user.
 For scalability, this informaiton will be connected to an API and logged to database for the business to keep track on client histroy."""
+
 client_info = {
     "first name": [],
     "last name": [],
@@ -95,7 +84,7 @@ clients_app = {
 
 #     for info in client_info.values():
 #       print(info)
-    
+
 #     print("client added!")
 #     print(dash.center(50))
 
@@ -104,11 +93,10 @@ clients_app = {
 
 # print("Continue to booking..../n")
 
-print("Please provide client's available day,for example, Tuesday.")
+print("Please provide client's available day, for example, Tuesday.")
 user_day = input("Day:\n")
 
-# print("Please provide client's available time in 24hr clock format, for example 14:00.")
-# user_time = str(input("Time:\n"))
+
 
 # print("Please provide the required service. If the client is requedting more than one type of service, please add them in seperated by commas, for example; highlights, cut and blow dry, hair cut\n")
 # services = input("Service(s):\n")
@@ -117,47 +105,51 @@ user_day = input("Day:\n")
 
 def available_dates():
     """
-    works out if given user time and day are available. If day and time are available, the user will be notified. If there is no availability for the day and time provided, the program will calculate next avaible day and time.
+    works out if given user time and day are available. If day and time are available, the user will be notified. If there is no availability for the day and time provided, the program will print out next avaible day and time.
     """
     print("Checking appointment availability....\n")
-
-    # gets keys from salon_dates and prints them to list;
-    salon_days = salon_dates.keys()
-    days_available = [str(key) for key in salon_days]
-    print(days_available)
     
-    if user_day not in days_available[0]:
-      print("day not available")
+    if user_day not in salon_dates:
+       print("Invalid day. Please try again.")
     else:
-      print("day available")
-    
-    
-    # gets values from salon_dates and prints them to list:
-    # salon_times = salon_dates.values()
-    # times_available = [str(values) for values in salon_times]
-    # print(salon_times)
+        print(salon_dates[user_day])
+        print("Please provide client's available time in 24hr clock format, for example 14:00.")
+        user_time = str(input("Time:\n"))
+        if user_time not in salon_dates[user_day]:
+          print("Time is unavilable. Please enter a new time.")
+        else:
+          print("All booked!")
+
 
 # -------------------------------------------------------------------->
-# generate booking number and update client_app dictionary
+# generate booking number and update client_app dictionary;
+
+# def name(fname, lname):
+
+#     f = fname.split()
+#     l = lname.split()
+#     new = ""
+
+#     for i in range(len(f)-1):
+#       fname = f[i]
+
+# def get_booking_num():
+#   """
+#   will work out unique booking number. Booking number will consist of first initials from client first and last name, date and time, and a generate random number.
+#   """
 
 
-def get_booking_num():
-  """
-  will work out unique booking number by XXXXXX
-  """
-  pass
-
-def update_clinet_app:
-  """
-  update the client_app dictionary with the day, time, servcies and booking number
-  """
-  pass
+# def update_clinet_app:
+#   """
+#   update the client_app dictionary with the day, time, servcies and booking number
+#   """
+#   pass
 
 # -------------------------------------------------------------------->
 # end program
 
 # -------------------------------------------------------------------->
-# main functions 
+# main functions; 
 
 #update_client()
 available_dates()
