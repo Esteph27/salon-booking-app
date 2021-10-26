@@ -1,4 +1,4 @@
-from pprint import pprint
+import random
 
 """ salon_dates shows the days and time avaible for the salon. These will be used to check against the user input days and time to see if there id availabilty for the requested time and day."""
 
@@ -38,7 +38,7 @@ services = {
   "Treatment conditioner": 20
 }
 
-""" client shows takes in the client informaiton provided by the user.
+""" client_info shows takes in the client informaiton provided by the user.
 for scalability, this informaiton will be connected to an API and logged to database for the business to keep track on client histroy."""
 client_info = {
     "first name": [],
@@ -47,10 +47,10 @@ client_info = {
     "contact number": []
 }
 
-""" client_appointment shows the appointment details for the client in question. the terminal will print the values once the apppoinmnet has been made.
+""" clients_app shows the appointment details for the client in question. the terminal will print the values once the apppoinmnet has been made.
 # for scalability, this informaiton would be uploaded onto a database and the client will also recive an email/text notification with this information"""
 
-clients_appointments = {
+clients_app = {
   "client name": [],
   "services requested": [],
   "appointment date": [],
@@ -64,11 +64,12 @@ clients_appointments = {
 intro = "Welcome to Blanca's Hair Salon booking system\n"
 print(intro.center(50))
 
+
 dash = "-" * 35
 print(dash.center(50))
 
 #-------------------------------------------------------------------->
-# request appointment and client information from the user;
+# request client information from the user;
 
 print("To book a new appointment, please provide the below information;\n")
 
@@ -88,40 +89,39 @@ def update_client():
     """
     adds client informaiton to clients dictionary and prints to terminal
     """
-
     client_info.update({"first name":f"{fname}", "last name":f"{lname}", "email":f"{user_email}", "contact number":f"{contact_no}"})
+
+    print(dash.center(50))
 
     for info in client_info.values():
       print(info)
-
+    
     print("client added!")
+    print(dash.center(50))
+
+#-------------------------------------------------------------------->
+# request appointment information from the user;
+print("Continue to booking..../n")
+
+print("Please provide client's available day, type name of day,for example, Tuesday")
+user_day = input("Day:\n")
+
+print("Please provide client's available time, tye time in digital 24hr format, for example 14:00")
+user_time = str(input("Time:\n"))
+
+print("Please provide the required service seperated by commas, for example; highlights, cut and blow dry\n")
+services = input("Service(s):\n")
+
+print("Thank you. Getting information....\n")
+
+def available_dates():
+    """
+    works out if given user time and date are available. if day and time are available, the user will be notified. If there is no availability for the day and time provided, the program will calculate next avaible day and time
+    """
+    print("Checking appointment availability....\n")
+    
+    if salon_dates["Monday"]["Morning"][0] == user_time:
+
+
 
 update_client()
-
-# print("Continue to booking./n")
-
-# print("Please provide client's available day, type name of day,for example, Tuesday")
-# user_day = input("Day:\n")
-
-# print("Please provide client's available time, tye time in digital 24hr format, for example 14:00")
-# user_time = str(input("Time:\n"))
-
-# print("Please provide the required service seperated by commas, for example; highlights, cut and blow dry\n")
-# services = input("Service(s):\n")
-
-# print("Thank you. Getting information....\n")
-
-
-# def available_dates():
-#     """
-#     works out if given user time and date are available. if day and time are available, the user will be notified. If there is no availability for the day and time provided, the program will calculate next avaible day and time
-#     """
-#     print("Checking appointment availability....\n")
-#     pass
-
-
-
-# available_dates()
-
-print("Appointment available!")
-print("Calculating price and generating unqiue booking numnber...")
