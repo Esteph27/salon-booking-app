@@ -1,3 +1,4 @@
+"""Blanca's hair salon"""
 
 # salon_date show the availability of the salon
 # this will be used to check the salon availability against the user input
@@ -51,75 +52,82 @@ clients_app = {
 INTRO = "Welcome to Blanca's Hair Salon booking system\n"
 print(INTRO.center(50))
 
-
 DASH = "-" * 35
 print(DASH.center(50))
 
+SPACE = " "
 
 # -------------------------------------------------------------------->
 # request client information from the user;
 
 print("To book a new appointment, please provide the below information;\n")
 
-print("Please provide client's first name.")
-fname = input("First Name:\n")
-
-print("Please provide client's last name.")
-lname = input("Last Name:\n")
-
-print("Please provide client's email address.")
-user_email = input("Email:\n")
-
-print("Please provide client's contact number")
-contact_no = input("Contact Number:\n")
-
 
 def update_client():
     """
     adds client informaiton to clients dictionary
     """
-    client_info.update({"first name": f"{fname}", "last name": f"{lname}", "email": f"   {user_email}", "contact number": f"{contact_no}"})
+
+    print("Please provide client's first name.\n")
+    fname = input("First Name:\n")
+    print(SPACE)
+
+    print("Please provide client's last name.\n")
+    lname = input("Last Name:\n")
+    print(SPACE)
+
+    print("Please provide client's email address.\n")
+    user_email = input("Email:\n")
+    print(SPACE)
+
+    print("Please provide client's contact number.\n")
+    contact_no = input("Contact Number:\n")
+    print(SPACE)
+
+    client_info.update({"first name": f"{fname}", "last name": f"{lname}", "email": f"{user_email}", "contact number": f"{contact_no}"})
 
     print(DASH.center(50))
-    
+
     for info in client_info.values():
-      print(info)
-
-
-print("client added!")
-print(DASH.center(50))
+        print(info)
+    
+    print(SPACE)
+    print("Client added!")
+    print(DASH.center(50))
 
 
 # -------------------------------------------------------------------->
 # request appointment information from the user;
-
-print("Continue to booking....\n")
-
-print("Please provide client's available day, for example, Tuesday.")
-user_day = input("Day:\n")
-
-# print("Please provide the required service. If the client is requedting more than one type of service, please add them in seperated by commas, for example; highlights, cut and blow dry, hair cut\n")
-# services = input("Service(s):\n")
-
-# print("Thank you. Getting information....\n")
 
 
 def available_dates():
     """
     works out if the given user time and day are available. If day and time are available, the user will be notified. If there is no availability for the day and time provided by the user, the program will print out next available day and time.
     """
+    print("Continue to booking....\n")
+
+    print("Please provide client's available day, for example, Tuesday.\n")
+    user_day = input("Day:\n")
+
     print("Checking appointment availability....\n")
 
     if user_day not in salon_dates:
-       print("Invalid day. Please try again.")
+        print("Invalid day. Please try again.")
     else:
         print(salon_dates[user_day])
         print("Please provide client's available time in 24hr clock format, for example 14:00.")
         user_time = str(input("Time:\n"))
         if user_time not in salon_dates[user_day]:
-         print("Time is unavilable. Please enter a new time.")
+            print("Time is unavilable. Please enter a new time.")
         else:
-          print("All booked!")
+            print("All booked!")
+
+
+# print("Please provide the required service. If the client is requesting more than one type of service,
+# please add them in seperated by commas, for example; highlights, cut and blow dry, hair cut\n")
+# services = input("Service(s):\n")
+
+# print("Thank you. Getting information....\n")
 
 
 # -------------------------------------------------------------------->
@@ -139,6 +147,7 @@ def available_dates():
 
 # -------------------------------------------------------------------->
 # main functions;
+
 
 update_client()
 available_dates()
