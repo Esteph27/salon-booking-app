@@ -95,12 +95,20 @@ print(SPACE)
 # -------------------------------------------------------------------->
 # collect appointment information;
 
-
 def salon_availability(day):
-    """works out avaiable day"""
+    """gets available day and provides times available for the day"""
 
-    print ("Available time on " + day.upper() + " is: ")
+    print("Available time on " + day.upper() + " is: ")
     print(salon_dates[day.lower()])
+    print(user_time)
+
+print("Thank you. Please now enter the services requested, if there are more than one, please separate them by a comma with no spaces.\n")
+print("Here is the list of services:\n")
+
+def list_of_services():
+
+  salon_list = [str(key) for key in service_type]
+  print(salon_list)
 
 
 def calc_cost(service_names):
@@ -119,16 +127,19 @@ def calc_cost(service_names):
     print("Total will be: " + str(total))
 
 
-user_day = input("Please provide requested day (Monday to Friday): \n")
+user_day = input("Please provide requested day (Monday to Friday):\n")
 
-print("Thank you. Please now enter the services requested, if there are more than one, please separate them by a comma with no spaces\n")
-print("Here is the list of services;\n")
-
-salon_services = service_type.keys()
-salon_list = [str(key) for key in salon_services]
-print(salon_services)
+user_time = input("Please select a time for " f"{user_day}" ":\n")
 
 user_selection = input("Enter services requested, : \n")
 
+
+
+
+# -------------------------------------------------------------------->
+# funcitons:
+
 salon_availability(user_day)
+list_of_services()
 calc_cost(user_selection)
+
