@@ -1,4 +1,3 @@
-import pprint from pprint
 
 """Blanca's hair salon"""
 
@@ -22,11 +21,11 @@ salon_dates = {
 
 service_type = {
   "cut and blow dry": 50,
-  "dalf head highlights": 50,
+  "half head highlights": 50,
   "highlights": 100,
   "tint": 20,
-  "tair cut": 40,
-  "tolour": 60,
+  "hair cut": 40,
+  "colour": 60,
   "treatment conditioner": 20
 }
 
@@ -49,121 +48,87 @@ clients_app = {
 }
 
 # -------------------------------------------------------------------->
-# intro to program;
+# start of program;
 
-# INTRO = "Welcome to Blanca's Hair Salon booking system\n"
-# print(INTRO.center(50))
+INTRO = "Welcome to Blanca's Hair Salon booking system\n"
+print(INTRO.center(50))
 
-# DASH = "-" * 35
-# print(DASH.center(50))
+DASH = "-" * 35
+print(DASH.center(50))
 
-# SPACE = " "
-
-# -------------------------------------------------------------------->
-# print("To book a new appointment, please provide the below information;\n")
-
-
-# def update_client():
-#     """
-#     requests client information from the user and adds to client_info dictionary
-#     """
-
-#     print("Please provide client's first name.\n")
-#     fname = input("First Name:\n")
-#     print(SPACE)
-
-#     print("Please provide client's last name.\n")
-#     lname = input("Last Name:\n")
-#     print(SPACE)
-
-#     print("Please provide client's email address.\n")
-#     user_email = input("Email:\n")
-#     print(SPACE)
-
-#     print("Please provide client's contact number.\n")
-#     contact_no = input("Contact Number:\n")
-#     print(SPACE)
-
-#     # adds client information to client_info
-#     client_info.update({"first name": f"{fname}", "last name": f"{lname}", "email": f"{user_email}", "contact number": f"{contact_no}"})
-
-#     print(DASH.center(50))
-
-#     for info in client_info.values():
-#         print(info)
-
-#     print(SPACE)
-#     print("Client added!")
-#     print(DASH.center(50))
-
+SPACE = " "
 
 # -------------------------------------------------------------------->
-# request appointment information from the user;
+# collect customer information;
 
+print("To book a new appointment, please provide the below information;\n")
+print("Please provide client's first name.\n")
+fname = input("First Name:\n")
+print(SPACE)
 
-# def available_dates():
-#     """
-#     works out if the given user time and day are available, if not next available days will be provided
-#     """
-#     print("Continue to booking....\n")
+print("Please provide client's last name.\n")
+lname = input("Last Name:\n")
+print(SPACE)
 
-#     while True:
-#         print("Please provide client's available day, for example, Tuesday.\n")
-#         user_day = input("Day:\n")
-#         print("Checking if day is avaiable....\n")
+print("Please provide client's email address.\n")
+user_email = input("Email:\n")
+print(SPACE)
 
-#         if user_day not in salon_dates:
-#             print("Day unavaiable. Next available days are:")
-#             salon_days = salon_dates.keys()
-#             days_available = [str(key) for key in salon_days]
-#             print(days_available)
-#         else:
-#             print("Day is available, please select time")
-#             break
+print("Please provide client's contact number.\n")
+contact_no = input("Contact Number:\n")
+print(SPACE)
 
-#     while True:
-#         user_time = str(input("Time:\n"))
-#         if user_time not in salon_dates[user_day]:
-#             print("Time is unavilable, please see available times for " f"{user_day}")
-#             salon_times = salon_dates.values()
-#             times_available = [str(values) for values in salon_times]
-#             print(times_available)
-#         else:
-#             print("Time is avaiable!")
-#             print(SPACE)
-#             print(f"{user_day}" " at " f"{user_time}" " has been booked!")
-#             print(DASH.center(50))
-#             print("Continue to appointment details...")
-#             break
+# adds client information to client_info
+client_info.update({"first name": f"{fname}", "last name": f"{lname}", "email": f"{user_email}", "contact number": f"{contact_no}"})
 
+print(DASH.center(50))
 
-def appointment_cost():
-    print("Please provide the service(s) required)
-    print("If the client is requesting more than one type of service, please seperat them by commas, for example; highlights, hair cut\n")
-    pprint(service_type)
+for info in client_info.values():
+    print(info)
 
-
-    services_requested = input("Service(s):\n")
-    print("Thank you. Working out total cost...")
-
-    sum([service_type[service_name] for service_name in services_requested])
-    print(sum)
-    
+print(SPACE)
+print("Client added!")
+print(DASH.center(50))
+print("Continue to appointment details...")
+print(SPACE)
 
 # -------------------------------------------------------------------->
-# generate booking number and update client_app dictionary;
-
-# def get_booking_num():
-# will work out unique booking number. Booking number will consist of first initials from client first and last name, date and time, and a generate random number.
+# collect appointment information;
 
 
-# -------------------------------------------------------------------->
-# end program
+def salon_availability(day):
+    """works out avaiable day"""
 
-# -------------------------------------------------------------------->
-# main functions;
+    print ("Available time on " + day.upper() + " is: ")
+    print(salon_dates[day.lower()])
 
 
-# update_client()
-# available_dates()
-appointment_cost()
+def calc_cost(service_names):
+  """works out how much the appointment will cost"""
+  
+  list_services = service_names.split(",")
+
+  print(len(list_services))
+
+  total = 0
+  for i in range(len(list_services)):
+    print ("the total bill for " + list_services[i] + " is: " + str(service_type[list_services[i]]))
+
+    total += service_type[list_services[i]]
+
+    print("Total will be: " + str(total))
+
+
+user_day = input("Please provide requested day (Monday to Friday): \n")
+
+print("Thank you. Please now enter the services requested, if there are more than one, please separate them by a comma with no spaces\n")
+print("Here is the list of services;\n")
+
+salon_services = service_type.keys()
+salon_list = [str(key) for key in salon_services]
+print(salon_services)
+
+user_selection = input("Enter services requested, : \n")
+
+salon_availability(user_day)
+calc_cost(user_selection)
