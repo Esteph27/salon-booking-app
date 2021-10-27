@@ -112,7 +112,10 @@ def available_dates():
       print("Checking if day is avaiable....\n")
 
       if user_day not in salon_dates:
-        print("Day unavaiable. Please try another day.")
+        print("Day unavaiable. Next available days are:")
+        salon_days = salon_dates.keys()
+        days_available = [str(key) for key in salon_days]
+        print(days_available)
       else:
         print("Day is available, please select time")
         break 
@@ -120,12 +123,18 @@ def available_dates():
     while True:
         user_time = str(input("Time:\n"))
         if user_time not in salon_dates[user_day]:
-          print("Time is unavilable. Please enter a new time.")
+          print("Time is unavilable, please see available times for " f"{user_day}")
+          salon_times = salon_dates.values()
+          times_available = [str(values) for values in salon_times]
+          print(times_available)
         else:
           print("Time is avaiable!")
+          print(SPACE)
+          print(f"{user_day}" " at " f"{user_time}" " has been booked!")
+          print(DASH)
+          print("Continue to appointment details...")
           break
-          
-        
+    
 
 
 
