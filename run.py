@@ -58,14 +58,13 @@ print(DASH.center(50))
 SPACE = " "
 
 # -------------------------------------------------------------------->
-# request client information from the user;
 
 print("To book a new appointment, please provide the below information;\n")
 
 
 def update_client():
     """
-    adds client informaiton to clients dictionary
+    requests client information from the user and adds to client_info dictionary
     """
 
     print("Please provide client's first name.\n")
@@ -84,6 +83,7 @@ def update_client():
     contact_no = input("Contact Number:\n")
     print(SPACE)
 
+    # adds client information to client_info
     client_info.update({"first name": f"{fname}", "last name": f"{lname}", "email": f"{user_email}", "contact number": f"{contact_no}"})
 
     print(DASH.center(50))
@@ -102,25 +102,31 @@ def update_client():
 
 def available_dates():
     """
-    works out if the given user time and day are available. If day and time are available, the user will be notified. If there is no availability for the day and time provided by the user, the program will print out next available day and time.
+    works out if the given user time and day are available, if not next available days will be provided
     """
     print("Continue to booking....\n")
+    
+    while True:
+      print("Please provide client's available day, for example, Tuesday.\n")
+      user_day = input("Day:\n")
+      print("Checking if day is avaiable....\n")
 
-    print("Please provide client's available day, for example, Tuesday.\n")
-    user_day = input("Day:\n")
-
-    print("Checking appointment availability....\n")
-
-    if user_day not in salon_dates:
-        print("Invalid day. Please try again.")
-    else:
-        print(salon_dates[user_day])
-        print("Please provide client's available time in 24hr clock format, for example 14:00.")
+      if user_day not in salon_dates:
+        print("Day unavaiable. Please try another day.")
+      else:
+        print("Day is available, please select time")
+        break 
+    
+    while True:
         user_time = str(input("Time:\n"))
         if user_time not in salon_dates[user_day]:
-            print("Time is unavilable. Please enter a new time.")
+          print("Time is unavilable. Please enter a new time.")
         else:
-            print("All booked!")
+          print("Time is avaiable!")
+          break
+          
+        
+
 
 
 # print("Please provide the required service. If the client is requesting more than one type of service,
