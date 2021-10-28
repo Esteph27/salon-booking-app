@@ -67,19 +67,19 @@ def customer_info():
 
     print("To book a new appointment, please provide the below information;\n")
     print("Please provide client's first name.\n")
-    fname = input("First Name:\n")
+    fname = input_and_check("First Name:\n")
     print(SPACE)
 
     print("Please provide client's last name.\n")
-    lname = input("Last Name:\n")
+    lname = input_and_check("Last Name:\n")
     print(SPACE)
 
     print("Please provide client's email address.\n")
-    user_email = input("Email:\n")
+    user_email = input_and_check("Email:\n", field_type="email")
     print(SPACE)
 
     print("Please provide client's contact number.\n")
-    contact_no = input("Contact Number:\n")
+    contact_no = input_and_check("Contact Number:\n", field_type="number")
     print(SPACE)
 
     # adds client information to client_info
@@ -176,6 +176,21 @@ def confirm_booking():
     # clients_app.update({})
 
 
+def input_and_check(label, field_type=None):
+
+    while True:
+        value = input(label)
+
+        if len(value) == 0:
+            print("No entry given, please try again")
+        elif field_type == "email" and '@' not in value:
+            print("Invalid email, email has to contain @ sign")
+        elif field_type == "number" and len(value) != 11:
+            print("Invalid number, number has to contain 11 characters")
+        else:
+            return value
+
+
 def main():
     """calls main functions"""
 
@@ -184,12 +199,9 @@ def main():
 
     print(DASH.center(50))
 
-    # customer_info()
-    # appointment_info()
-    # confirm_booking()
-
-    email = input("hi")
-    print(email)
+    customer_info()
+    appointment_info()
+    confirm_booking()
 
 
 if __name__ == "__main__":
