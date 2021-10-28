@@ -184,9 +184,12 @@ def main():
 
     print(DASH.center(50))
 
-    customer_info()
-    appointment_info()
-    confirm_booking()
+    # customer_info()
+    # appointment_info()
+    # confirm_booking()
+
+    email = input("hi")
+    print(email)
 
 
 if __name__ == "__main__":
