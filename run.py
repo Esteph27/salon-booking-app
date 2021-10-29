@@ -5,6 +5,7 @@ import string
 
 DASH = "-" * 35
 SPACE = " "
+END = "Thank you booking with the Salon Booking app!"
 
 # -------------------------------------------------------------------->
 # salon_date show the availability of the salon
@@ -126,8 +127,8 @@ def customer_info():
 
     # adds client information to client_info
     client_info.update({
-        "first name": f"{fname}",
-        "last name": f"{lname}",
+        "first name": f"{fname.upper()}",
+        "last name": f"{lname.upper()}",
         "email": f"{user_email}",
         "contact number": f"{contact_no}"
     })
@@ -137,10 +138,7 @@ def customer_info():
 
     print(DASH.center(50))
     print(SPACE)
-
-    for info in client_info.values():
-        print(info)
-
+    print_dictionaries(client_info)
     print(SPACE)
     print("Client added!")
     print(SPACE)
@@ -152,12 +150,6 @@ def customer_info():
 
 def appointment_info():
     """collect appointment information from the user"""
-
-    def _list_of_services():
-        """prints out lsit of services provided by the salon"""
-
-        salon_list = [str(key) for key in service_type]
-        print(salon_list)
 
     def _calc_cost(selection):
         """calculate price of appointment based on the service type provided"""
@@ -184,16 +176,18 @@ def appointment_info():
     print(SPACE)
     print("Please now enter the services requested....\n")
     print(SPACE)
-    print("If more than one service type are required, please separate them by a comma. Do not include spaces between the commas.\n")
+    print("Please select a service type from the list provided below:\n")
+    print("If more than one required, please separate them by a comma.\n")
+    print("Do not include spaces between the commas.\n")
     print("For example: highlights,tint,hair cut")
-    print("Please select from the list provided:\n")
+    print(SPACE)
 
-    _list_of_services()
+    print_dictionaries(service_type)
     print(SPACE)
 
     user_selection = input("Enter services requested:\n")
     print(SPACE)
-    print("Information received!\n")
+    print("Information received.\n")
     print('Calculating price...')
     print(SPACE)
     print(DASH.center(50))
@@ -205,13 +199,13 @@ def appointment_info():
     print(SPACE)
 
     # update client_ app with user day and time selected
-    client_app.update({"appointment date": f"{user_day}" + f"{user_time}"})
+    client_app.update({"appointment date": f"{user_day} " + f"{user_time}"})
 
     # update client_ app with services input
     client_app.update({"services requested": f"{user_selection}"})
 
     # update client_ app with total cost;
-    client_app.update({"total cost": f"{str(total_cost)}"})
+    client_app.update({"total cost": " £" + f"{str(total_cost)}"})
 
 
 def confirm_booking():
@@ -225,17 +219,15 @@ def confirm_booking():
     # update clients_ app with booking number
     client_app.update({"booking number": f"{id_num}"})
 
-    final_booking_info = []
-    for item in client_app.items():
-        final_booking_info.append(item)
-
     # confirm appointment booking;
     print("Booking completed!\n")
     print("Final booking details below:\n")
     print(SPACE)
-    print(final_booking_info)
+    print_dictionaries(client_app)
     print(SPACE)
     print(DASH.center(50))
+    print(SPACE)
+    print(END.center(50))
 
 
 def input_and_check(label, field_type=None):
@@ -252,6 +244,13 @@ def input_and_check(label, field_type=None):
             print("Invalid number, number has to contain 11 numbers")
         else:
             return value
+
+
+def print_dictionaries(body):
+    """print out given dictionary"""
+
+    for item in body:
+        print(item.upper(), ":", body[item])
 
 
 def main():
