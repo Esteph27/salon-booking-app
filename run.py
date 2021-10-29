@@ -5,10 +5,10 @@ import string
 
 DASH = "-" * 35
 SPACE = " "
-END = "Thank you booking with the Salon Booking app!"
+END = "Thank you for booking with the Salon Booking app!"
 
 # -------------------------------------------------------------------->
-# salon_date show the availability of the salon
+# salon_date shows the availability of the salon
 # this will be used to check the salon availability against the user input
 
 salon_dates = {
@@ -91,7 +91,7 @@ client_info = {
     "contact number": []
 }
 
-# clients_app shows the final booking information for the client appointment
+# clients_app shows the final booking information
 
 client_app = {
   "client name": [],
@@ -105,10 +105,10 @@ client_app = {
 
 
 def customer_info():
-    """collect customer information"""
+    """step 1. collects customer information"""
 
     print(SPACE)
-    print("To book a new appointment, please provide the below information;\n")
+    print("To book a new appointment, please provide the below information:\n")
     print("Please provide client's first name.")
     fname = input_and_check("First Name:\n")
     print(SPACE)
@@ -149,7 +149,7 @@ def customer_info():
 
 
 def appointment_info():
-    """collect appointment information from the user"""
+    """step 2. collect appointment information from the user"""
 
     def _calc_cost(selection):
         """calculate price of appointment based on the service type provided"""
@@ -161,7 +161,8 @@ def appointment_info():
             total += service_type[list_services[i]]
         return total
 
-    user_day = input("Please provide requested day (Monday to Friday):\n")
+    print("Please select a day from Monday to Friday.")
+    user_day = input_and_check("Day:\n", field_type="day")
     print(SPACE)
 
     print("Available time on " + user_day.upper() + " is: ")
@@ -209,7 +210,7 @@ def appointment_info():
 
 
 def confirm_booking():
-    """generate booking id number and confirm booking details"""
+    """ step 3. generate booking id number and confirm booking details"""
 
     # generates random booking number
     random_num = random.randint(1, 99)
@@ -238,11 +239,15 @@ def input_and_check(label, field_type=None):
         value = input(label)
 
         if len(value) == 0:
-            print("No name provided, please try again")
+            print("No name provided, please try again\n")
         elif field_type == "email" and '@' not in value:
-            print("Invalid email, email has to contain an @ symbol")
+            print("Invalid email, email has to contain an @ symbol\n")
         elif field_type == "number" and len(value) != 11:
-            print("Invalid number, number has to contain 11 numbers")
+            print("Invalid number, number has to contain 11 numbers\n")
+        elif field_type == "day" and value == 'saturday':
+            print("Day unavaiable. Try again\n")
+        elif field_type == "day" and value == 'sunday':
+            print("Day unavaiable. Available days are Monday and Friday.\n")
         else:
             return value
 
