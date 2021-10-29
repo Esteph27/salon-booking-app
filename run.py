@@ -228,6 +228,7 @@ def confirm_booking():
     print(DASH.center(50))
     print(SPACE)
     print(END.center(50))
+    print(SPACE)
 
 
 def input_and_check(label, field_type=None):
