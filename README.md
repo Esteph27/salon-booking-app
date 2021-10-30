@@ -213,6 +213,21 @@ Once the program runs: you should see the message "the app was sussesfully deplo
 
 The link to the live site is here - salon-booking-app.herokuapp.com/
 
+### Forking the GitHub repository
+
+By forking out of this repository you will be able to view and edit the code without affecting the original repository.
+
+1. Locate the GitHub repository. Link to repo: https://github.com/Esteph27/salon-booking-app
+2. Click the button in the top right-hand corner "Fork"
+3. This will take you to your own repository to a fork that is called the same as the original branch.
+
+### Making a local clone
+1. Locate the GitHub repository. Link as above.
+2. Next to the green Gitpod button you will see a button "code" with an arrow pointing down
+3. You are given the option to open with GitHub desktop or download zip
+4. You can also copy https full link, go to git bash and write git clone and paste the full link
+
+
 ## Credits
 
 * Code Institute - deployed terminal 
