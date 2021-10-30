@@ -1,4 +1,4 @@
-![device screen image](assets/device_screens.png)
+![device screen image](/assets/device-screens.png)
 
 # Welcome to the Salon Booking App!
 
@@ -71,4 +71,21 @@ Once the service(s) are selected, the program will calculate how much the appoin
     * Total cost 
 
 
-Flow chart below to illustrate the logic link
+Flow chart below to illustrate the logic link:![flow chart](https://raw.githubusercontent.com/Esteph27/salon-booking-app/main/assets/logic-flowchart.jpeg)
+
+##Features
+
+###Existing features;
+
+* Calculate costing function: calculates the total cost of the appointment so the user doesn’t have to work it out for themselves! It adds up the number of services provided by the user and confirms the total price in the terminal. The prices for each service are found in the service_type dictionary. 
+
+![costing](/assets/cost.png)
+
+* Booking ID function: generates a unique booking number for the appointment being booked. It selects a pair of random numbers using the randomint() function and a pair of capital letters using the string.ascii_letters() function. Both results are concatenated to form the unique booking ID. By including a set of random numbers and letters, it reduces the chances of getting the same ID number twice.
+
+![bookig ID](/assets/booking-id.png)
+
+
+* Validation: various validation throughout the program checks the information provided by the user in order for the program to run without as many errors as possible. When the user has provided invalid data, the terminal will provide feedback on the error so  the user can make sure to correct their input so the can program can run smoothly. 
+
+![time validation](/assets/time-validation.png)
