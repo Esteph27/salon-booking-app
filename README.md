@@ -6,7 +6,7 @@ The Salon Booking App is a Python terminal application, which runs in the Code I
 
 This program is a small and simple booking system built for hair salons in mind, with a goal to one day use in the real world. It was made with the intention to make new client bookings easy, effective and responsive. 
 
-Link to live page: salon-booking-app.herokuapp.com
+Link to live page: https://salon-booking-app.herokuapp.com/
 
 ## Users
 The user for this program are hair salons. This program provides an easy and responsive way for hair salon businesses to make new bookings. A few user scenarios are below:
