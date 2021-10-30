@@ -86,7 +86,7 @@ Flow chart below to illustrate the logic:
 
 ![bookig ID](/assets/booking-id.png)
 
-* print_dictionary function: this function prints to the terminal dictionary keys and values. For this program, this function prints out the client_info dictionary which confirms top the user the client information they have added. It also prints out the client_app dictionary which is printed at the end of the program to confirm to the user the final appointment details. 
+* print_dictionary function: this function prints to the terminal dictionary keys and values. For this program, this function prints out the client_info dictionary which confirms to the user the client information they have added. It also prints out the client_app dictionary, which is printed at the end of the program to confirm to the user the final appointment details. 
 
 ![bookig ID](/assets/customer-added.png)
 ![bookig ID](/assets/booking-completed.png)
@@ -105,7 +105,8 @@ Created a function using a while True loop to check the below user input data:
 * Contact number: checks the lengths of the value being given. For the purpose of this project, I decided to check the length against 11 digits as that is the length of a UK mobile number. If the number provided is less than 11, the user will be notified and asked to try again. 
 
 * Email address; checks if the user has used the ‘@‘ symbol. If no ‘@‘ sign is detected, the user will be notified and be promoted to try again. 
-Day: checks the user hasn’t entered any day that is not specified by the terminal. For the purpose of this project, I have set the available days from Monday to Friday as mock data. 
+
+* Day: checks the user hasn’t entered any day that is not specified in the terminal. For the purpose of this project, I have set the available days from Monday to Friday as mock data. 
 
 * Time: checks the user has entered the correct time in the correct format. If a ‘:’ is missing the user will be notified. If they add a time that is not included in the list of times provided, they will be told the time is unavailable and be asked to enter the time again. 
 
@@ -129,11 +130,11 @@ I manually tested the project by doing the following:
 
 * Contact number
     * Submitting empty input tells the user no entry has been provided
-    * Adding numbers less than 11 digits the the user the number is invalid and tell the user the contact number must be 11 digits long 
+    * providing numbers less than 11 digits tells the user that the number is invalid and the contact number must be 11 digits long 
 
 * Email 
     * Submitting empty input tells the user no entry has been provided 
-    * Missing @ tell the user the email is invalid and must contain an @ symbol 
+    * Missing '@' symbol tells the user the email is invalid and must contain an '@' symbol 
 
 * Day
     * Submitting empty input tells the user no entry has been provided
@@ -149,6 +150,8 @@ I manually tested the project by doing the following:
 ## Bugs
 
 * Controlling input from the user for the service_type input. Currently, if the user misspells a service type or adds a space after the comma, it breaks the program
+
+* Controlling input from the user for the user_day input. Currently, if the user misspells a day incorrectly due to human error, it breaks the program
 
 ## Bugs Unfixed
 
@@ -231,11 +234,12 @@ By forking out of this repository you will be able to view and edit the code wit
 ## Credits
 
 * Code Institute - deployed terminal 
+
 * Felipe Sousa Alarcon - mentoring
 
 ## Future developments
 
-The Salon Booking App is a very simply and basic command-line application. However, I built it with scalability in mind and would want to implement the below features in the the future:
+The Salon Booking App is a very simple and basic command-line application. However, I built it with scalability in mind and would want to implement the below features in the the future:
 
 * Storing information to the user’s database: in a real-world situation, the program would be connected to the business existing API to store the information provided by the user, in this case, all the client information, appointment information and final booking details would be stored and saved to a database. 
 
@@ -243,15 +247,15 @@ The Salon Booking App is a very simply and basic command-line application. Howev
 
 * Update client information: a function to allow the user to update client information such as name and contact details.
 
-* Salon days and times - allows the user to update and edit the available days and time of the salon. For the purpose of this project the information is mock data. 
+* Salon days and times - allows the user to update and edit the available days and time of the salon. For the purpose of this project, the  current information is mock data to show as an example.
 
-* Update salon information: a function to allow the user to add, edit and remove the services and prices offered by the salon.The user can tailor the information in the program to suit their business. 
+* Update salon information: a function to allow the user to add, edit and remove the services and prices offered by the salon. The user can tailor the information in the program to suit their business. 
 
-* Email confirmation:  a feature to send confirmation emails to the clients to notify them that their appointment has been booked. The email would include important information such as; date, time, services, total price etc. A good ample of this is from treatwell.com
+* Email confirmation:  a feature to send confirmation emails to the clients to notify them that their appointment has been booked. The email would include important information such as; date, time, services, total price etc. A good example of this is from treatwell.com;
 
 ![treatwell email booking confirmation](/assets/treatwell.png)
 
-* Automate next appointment: In the hair salon world, it is common practise to book a client in for their next appointment following their first appointment. I would create a feature to automatically calculate the next appointment and send a notification to the client. This feature would also allow the client to either accept, decline, or reschedule the next appointment.
+* Automate next appointment: In the hair salon world, it is common practise to book a client in for their next appointment following their first appointment. I would create a feature to automatically calculate the next appointment and send a notification to the client. This feature would also allow the client to either accept, decline, or reschedule their next appointment.
 
 * Validate booking ID number: if the booking number happens to be repeated, there would be a function to calculate a new booking number.
 
@@ -267,4 +271,4 @@ Currently, the program has basic and simple validation, for future developments 
 
 ![validate csv](/assets/csv-space.png)
 
-* Phone numbers: for the purpose of this project I am using mock data to show it works. For the contact number section, the validation I have included is if a number is less than 11 digits (as that is how long a UK mobile number is). In future, I would want to add another layer of validation to account for land line numbers and foreign numbers. 
+* Phone numbers: for the purpose of this project I am using mock data to show how it works. For the contact number section, the validation I have included is if a number is less than 11 digits (as that is how long a UK mobile number is). In future, I would want to add another layer of validation to account for land line numbers and foreign numbers. 
