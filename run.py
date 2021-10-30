@@ -91,7 +91,7 @@ client_info = {
     "contact number": []
 }
 
-# clients_app shows the final booking information
+# clients_app takes in the final booking information
 
 client_app = {
   "client name": [],
@@ -133,8 +133,10 @@ def customer_info():
         "contact number": f"{contact_no}"
     })
 
-    # update client_ app with client name
-    client_app.update({"client name": f"{fname} " + f"{lname}"})
+    # update client_app with client name
+    client_app.update({
+        "client name": f"{fname.upper()} " + f"{lname.upper()}"
+    })
 
     print(DASH.center(50))
     print(SPACE)
@@ -169,7 +171,6 @@ def appointment_info():
     print(salon_dates[user_day.lower()])
     print(SPACE)
 
-    # user_time = input("Please select a time for " f"{user_day}" ":\n")
     print("Please select a time for " f"{user_day}" ":\n")
     user_time = input_and_check("Time:\n", field_type="time")
     print(SPACE)
@@ -202,10 +203,12 @@ def appointment_info():
     print(SPACE)
 
     # update client_ app with user day and time selected
-    client_app.update({"appointment date": f"{user_day} " + f"{user_time}"})
+    client_app.update({
+        "appointment date": f"{user_day.upper()} " + f"{user_time}"
+    })
 
     # update client_ app with services input
-    client_app.update({"services requested": f"{user_selection}"})
+    client_app.update({"services requested": f"{user_selection.upper()}"})
 
     # update client_ app with total cost;
     client_app.update({"total cost": " £" + f"{str(total_cost)}"})
@@ -235,7 +238,7 @@ def confirm_booking():
 
 
 def input_and_check(label, field_type=None):
-    """validate user for name, email and phone number inputs"""
+    """validate user input for name, email, number, day and time"""
 
     while True:
         value = input(label)
