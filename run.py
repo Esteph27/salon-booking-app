@@ -169,7 +169,9 @@ def appointment_info():
     print(salon_dates[user_day.lower()])
     print(SPACE)
 
-    user_time = input("Please select a time for " f"{user_day}" ":\n")
+    # user_time = input("Please select a time for " f"{user_day}" ":\n")
+    print("Please select a time for " f"{user_day}" ":\n")
+    user_time = input_and_check("Time:\n", field_type="time")
     print(SPACE)
 
     print("Thank you. Date and time receieved!\n")
@@ -239,7 +241,7 @@ def input_and_check(label, field_type=None):
         value = input(label)
 
         if len(value) == 0:
-            print("No name provided, please try again\n")
+            print("No entry provided, please try again\n")
         elif field_type == "email" and '@' not in value:
             print("Invalid email, email has to contain an @ symbol\n")
         elif field_type == "number" and len(value) != 11:
@@ -248,6 +250,9 @@ def input_and_check(label, field_type=None):
             print("Day unavaiable. Try again\n")
         elif field_type == "day" and value == 'sunday':
             print("Day unavaiable. Available days are Monday and Friday.\n")
+        elif field_type == "time" and ':' not in value:
+            print("Time unavailable. Select from the times available above.")
+            print("Please type in format 00:00\n")
         else:
             return value
 
